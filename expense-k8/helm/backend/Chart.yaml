@@ -1,4 +1,4 @@
-deployment:
-  imageVersion: v1
-hpa:
-  cpuUtilization: 20
+apiVersion: v1
+name: backend
+version: 0.0.1
+description: This chart is to manage backend application
