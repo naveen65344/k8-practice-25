@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: expense  # Optional: specify your namespace here
+  labels:
+    app: database
+    env: dev
+spec:
+  replicas: 2  # Number of desired pods
+  selector:
+    matchLabels:
+      app: database
+      env: dev
+      
+  template:
+    metadata:
+      labels:
+        app: database
+        env: dev
+    spec:
+      containers:
+      - name: mysql
+        image: naveen6792/mysql:v1  # Specify the Docker image
+        
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: expense # Optional: specify your namespace here
+spec:
+  type: ClusterIP  # Change to NodePort or LoadBalancer if needed
+  selector:
+     app: database
+     env: dev
+  ports:
+    - port: 3306  # Port exposed by the service
+      targetPort: 3306 # Port on the pod to forward traffic to
+      protocol: TCP
