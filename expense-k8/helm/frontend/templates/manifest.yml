@@ -44,6 +44,6 @@ spec:
      project: expense
   ports:
     - protocol: TCP
-      port: 3306  # External port
-      targetPort: 3306  # Port on the pod
+      port: 80  # External port
+      targetPort: 80  # Port on the pod
   type: LoadBalancer
